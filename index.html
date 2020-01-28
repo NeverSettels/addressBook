@@ -12,12 +12,28 @@
     <form id="new-contact">
       <label for="firstName">Contact's first name:</label>
       <input type="text" class="form-control" name="firstName" id="new-first-name">
+
       <label for="lastName">Contact's last name:</label>
       <input type="text" class="form-control" name="lastName" id="new-last-name">
+
       <label for="phoneNumber">Contact's phone number:</label>
       <input type="text" class="form-control" name="phoneNumber" id="new-phone-number">
-      <label for="physicalAddress">Contact's physical address:</label>
-      <input type="text" class="form-control" name="physicalAddress" id="new-physical-address">
+
+
+      <label for="Address">Contact's First address:</label>
+      <input type="text" class="form-control" name="Address" id="new-address1-location">
+
+      <label for="addressType">Contact's First address type:</label>
+      <input type="text" class="form-control" name='addressType' id='new-address1-type'>
+      
+      <label for="Address">Contact's second address:</label>
+      <input type="text" class="form-control" name="Address" id="new-address2-location">
+
+      <label for="addressType">Contact's second address type:</label>
+      <input type="text" class="form-control" name='addressType' id='new-address2-type'>
+      
+
+
       <label for="emailAddress">Contact's email address:</label>
       <input type="email" class="form-control" name="emailAddress" id="new-email-address">
       <button type="submit" class="btn btn-block btn-info">Submit</button>
@@ -31,7 +47,7 @@
           <p>First Name: <span class="first-name"></span></p>
           <p>Last Name: <span class="last-name"></span></p>
           <p>Phone Number: <span class="phone-number"></span></p>
-          <p>Physical Address: <span class="physical-address"></span></p>
+          <p>Address: <ul id='addresses'></ul></p>
           <p>Email Address: <span class="email-address"></span></p>
           <div id="buttons">
             </div>
