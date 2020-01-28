@@ -28,17 +28,22 @@ AddressBook.prototype.findContact = function(id) {
 };
 
   //Contact logic
-function Contact(firstName, lastName, phoneNumber, addresses, emailAddress) {
+function Contact(firstName, lastName, phoneNumber, emailAddress) {
   this.firstName = firstName;
   this.lastName = lastName;
   this.phoneNumber = phoneNumber;
-  this.addresses = addresses;
+  this.addresses = [];
   this.emailAddress = emailAddress;
 }
 
  Contact.prototype.fulllName = function(){
    return `${this.firstName} ${this.lastName}`
  }
+
+Contact.prototype.addAddress = function(address) {
+  this.addresses.push(address);
+};
+
 
  function Address(address, typeOfAddress){
    this.address = address;
@@ -63,9 +68,11 @@ function showContact(contactId) {
   $(".first-name").html(contact.firstName);
   $(".last-name").html(contact.lastName);
   $(".phone-number").html(contact.phoneNumber);
-
+  $('ul#addresses').empty();
   contact.addresses.forEach(function(address,i){
+    if (address.address.length != 0){
     $("ul#addresses").append(`<li id=${i}> ${address.typeOfAddress}: ${address.address}</li>`)
+  }
   })
 
   $(".email-address").html(contact.emailAddress);
@@ -95,15 +102,20 @@ $(document).ready(function() {
     $("input#new-first-name").val("");
     $("input#new-last-name").val("");
     $("input#new-phone-number").val("");
-    $("input#new-email-address").val('');
-    $("input#new-address").val('');
-    var inputtedAddress = [];
+    $("input#new-address1-type").val("");
+    $("input#new-address1-location").val("");
+    $("input#new-address2-type").val("");
+    $("input#new-address2-location").val("");
+    $("input#new-email-address").val("");
+    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedEmailAddress);
+    addressBook.addContact(newContact);
     var address1 = new Address(inputtedAddress1Location,inputtedAddress1Type);
     var address2 = new Address(inputtedAddress2Location,inputtedAddress2Type);
-    inputtedAddress.push(address1)
-    inputtedAddress.push(address2)
-    var newContact = new Contact(inputtedFirstName, inputtedLastName, inputtedPhoneNumber, inputtedAddress, inputtedEmailAddress);
-    addressBook.addContact(newContact);
+    newContact.addAddress(address1);
+    newContact.addAddress(address2);
+    // var inputtedAddress = [];
+    // inputtedAddress.push(address1)
+    // inputtedAddress.push(address2)
     displayContactDetails(addressBook);
 
   })
